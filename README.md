@@ -50,13 +50,17 @@ Great question! There are three tricks to building a deterministic zip:
    another machine, the timestamps of individual files may differ, despite
    having identical content. To achieve timestamp consistency,
    `deterministic_zip` sets the timestamp of all added files to `2019-01-01
-   00:00:00`. Please note that this __does not__ affect the timestamp of the
-   source files.
+   00:00:00`.
 
 3) Files in the zip must have consistent permissions. File permissions look
    like `-rw-r--r--` for a file that is readable by all users, and only
    writable by the user who owns the file. Similarly executable files might
    have permissions that look like: `-rwxr-xr-x` or
-   `-rwx------`. `deterministic_zip` sets the permission of all files to either
-   `-r--r--r--`, or `-r-xr-xr-x`. The latter is only used when the user running
-   `deterministic_zip` has execute access on the file.
+   `-rwx------`. `deterministic_zip` sets the permission of all files added to
+   the archive to either `-r--r--r--`, or `-r-xr-xr-x`. The latter is only used
+   when the user running `deterministic_zip` has execute access on the file.
+
+
+__Note__: `deterministic_zip` does not modify or update timestamps of any files
+it adds to archives. The techniques used above apply only to the copys of files
+within archives `deterministic_zip` creates.
