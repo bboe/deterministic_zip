@@ -62,5 +62,5 @@ Great question! There are three tricks to building a deterministic zip:
 
 
 __Note__: `deterministic_zip` does not modify nor update timestamps of any
-files it adds to archives. The techniques used above apply only to the copys of
-files within archives `deterministic_zip` creates.
+files it adds to archives. The techniques used above apply only to the copies
+of files within archives `deterministic_zip` creates.
