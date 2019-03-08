@@ -1,0 +1,17 @@
+cache: pip
+dist: xenial
+jobs:
+  include:
+    - install: pip install .[lint]
+      script:
+        - black --check --verbose *.py deterministic_zip
+        - flake8 --exclude=.eggs,build,docs
+      stage: lint
+    - install: pip install .[test]
+      script: pytest
+      stage: test
+language: python
+python: 3.7
+stages:
+  - lint
+  - test
