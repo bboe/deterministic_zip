@@ -24,6 +24,7 @@ setup(name=PACKAGE_NAME,
       description='A program to create deterministic zip files.',
       entry_points={'console_scripts': ['{0} = {0}:main'
                                         .format(PACKAGE_NAME)]},
+      extras_require={'dev': ['black', 'flake8', 'pre-commit']},
       keywords='aws lambda zip',
       license='Simplified BSD License',
       long_description=README,
