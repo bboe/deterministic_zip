@@ -12,7 +12,15 @@ with open(path.join(HERE, "README.md"), encoding="utf-8") as fp:
 with open(
     path.join(HERE, PACKAGE_NAME, "__init__.py"), encoding="utf-8"
 ) as fp:
-    VERSION = re.search("__version__ = '([^']+)'", fp.read()).group(1)
+    VERSION = re.search('__version__ = "([^"]+)"', fp.read()).group(1)
+
+
+extras_require = {
+    "dev": ["pre-commit"],
+    "lint": ["black", "flake8"],
+    "test": ["pytest"],
+}
+extras_require["dev"] = sorted(set(sum(extras_require.values(), [])))
 
 
 setup(
@@ -26,7 +34,7 @@ setup(
     ],
     description="A program to create deterministic zip files.",
     entry_points={"console_scripts": ["{0} = {0}:main".format(PACKAGE_NAME)]},
-    extras_require={"dev": ["black", "flake8", "pre-commit"]},
+    extras_require=extras_require,
     keywords="aws lambda zip",
     license="Simplified BSD License",
     long_description=README,
